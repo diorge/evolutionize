@@ -1,3 +1,11 @@
+# build config
 /.bsp/
-/.metals/
+.bloop/
+
+# build artifacts
 target/
+/project/project/
+
+# metals
+/.metals/
+/project/metals.sbt

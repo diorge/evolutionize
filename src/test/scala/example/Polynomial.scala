@@ -5,6 +5,6 @@ import org.scalatest.matchers.should.Matchers
 
 class PolynomialSpec extends AnyFlatSpec with Matchers {
   "Polynomials" should "be undefined" in {
-    a[NotImplementedError] should be thrownBy Polynomial.fitness
+    an[NotImplementedError] should be thrownBy Polynomial.fitness
   }
 }
