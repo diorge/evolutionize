@@ -11,21 +11,6 @@ class RandomVariableSpec
     extends AnyFlatSpec
     with Matchers
     with ScalaCheckPropertyChecks {
-  "random uniform integer" should "fall into inclusive range" in {
-    forAll { (a: Int, b: Int) =>
-      val l = scala.math.min(a, b)
-      val h = scala.math.max(a, b)
-
-      whenever(h < Integer.MAX_VALUE) {
-        val rv = UniformInt(Range(Inclusive(l), Inclusive(h)))
-        val value = rv.eval
-
-        value should be >= l
-        value should be <= h
-
-      }
-    }
-  }
   "mapping to Const" should "apply to the value" in {
     forAll { (a: Int) =>
       whenever(a < Integer.MAX_VALUE) {
