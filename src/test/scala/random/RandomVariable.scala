@@ -72,6 +72,16 @@ class RandomVariableSpec
       )
     }
   }
+  "combining RVs" should "be the tuple of evaluations" in {
+    forAll { (a: AnyVal, b: AnyVal) =>
+      const(a).product(const(b)).eval should equal((a, b))
+    }
+  }
+  it should "allow chaining" in {
+    forAll { (a: Int, b: Int) =>
+      const(a).product(const(b)).map(_ + _).eval == a + b
+    }
+  }
   "evaluating a RV" should "call the PRNG" in {
     import java.util.random.RandomGenerator
     given prng: RandomGenerator = new java.util.Random {
