@@ -25,12 +25,7 @@ given Monad[RandomVariable] with
   }
   def tailRecM[A, B](a: A)(
       func: A => RandomVariable[Either[A, B]]
-  ): RandomVariable[B] = new RandomVariable[B] {
-    def eval(using RandomGenerator): B = func(a).eval match {
-      case Left(x)  => tailRecM(x)(func).eval
-      case Right(x) => x
-    }
-  }
+  ): RandomVariable[B] = ???
 
 trait Uniform[T] extends RandomVariable[T] {
   def range: Range[T]
