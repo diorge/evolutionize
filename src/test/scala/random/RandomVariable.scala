@@ -35,6 +35,18 @@ class RandomVariableSpec
       }
     }
   }
+  it should "follow the identity law" in {
+    forAll { (a: AnyVal) =>
+      const(a).map(x => x) == const(a)
+    }
+  }
+  it should "follow the composition law" in {
+    val f = (x: Int) => x - 5
+    val g = (x: Int) => x + 1
+    forAll { (a: Int) =>
+      const(a).map(x => f(g(x))) == const(a).map(f).map(g)
+    }
+  }
   "evaluating a RV" should "call the PRNG" in {
     import java.util.random.RandomGenerator
     given prng: RandomGenerator = new java.util.Random {
