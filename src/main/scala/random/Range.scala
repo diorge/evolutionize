@@ -25,3 +25,7 @@ case class Range[T: Ordering](min: Bound[T], max: Bound[T]):
     }
   }
   require(validBound)
+
+  def range(using Numeric[T]): Double =
+    import scala.math.Numeric.Implicits._
+    max.bound.toDouble - min.bound.toDouble
