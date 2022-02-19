@@ -16,12 +16,6 @@ final case class Const[A](value: A) extends RandomVariable[A] {
 
 def const[A](value: A): RandomVariable[A] = Const(value)
 
-given Functor[RandomVariable] with
-  def map[A, B](value: RandomVariable[A])(func: A => B): RandomVariable[B] =
-    new RandomVariable[B] {
-      def eval(using RandomGenerator): B = func(value.eval)
-    }
-
 given Monad[RandomVariable] with
   def pure[A](value: A): RandomVariable[A] = Const(value)
   def flatMap[A, B](rv: RandomVariable[A])(
