@@ -15,3 +15,5 @@ case class UniformInt(range: Range[Int]) extends Uniform[Int]:
     val lower = range.min.applyOnExclusive(_ + 1)
     val higher = range.max.applyOnInclusive(_ + 1)
     if lower == higher then lower else rng.nextInt(lower, higher)
+
+def uniformInt(range: Range[Int]): RandomVariable[Int] = UniformInt(range)
